@@ -4,12 +4,12 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
-using SmallSteps.ViewModels;
-using SmallSteps.Views;
+using SmallSteps.Desktop.ViewModels;
+using SmallSteps.Desktop.Views;
 
-namespace SmallSteps;
+namespace SmallSteps.Desktop;
 
-public partial class App : Application
+public partial class App : Avalonia.Application
 {
     public override void Initialize()
     {

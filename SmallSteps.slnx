@@ -1,3 +1,7 @@
 <Solution>
-  <Project Path="SmallSteps/SmallSteps.csproj" />
+  <Project Path="SmallSteps.Application/SmallSteps.Application.csproj" />
+  <Project Path="SmallSteps.Desktop/SmallSteps.Desktop.csproj" />
+  <Project Path="SmallSteps.Domain/SmallSteps.Domain.csproj" />
+  <Project Path="SmallSteps.Infrastructure/SmallSteps.Infrastructure.csproj" />
+  <Project Path="SmallSteps.Tests/SmallSteps.Tests.csproj" />
 </Solution>

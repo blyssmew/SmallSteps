@@ -1,4 +1,4 @@
-﻿namespace SmallSteps.ViewModels;
+﻿namespace SmallSteps.Desktop.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {

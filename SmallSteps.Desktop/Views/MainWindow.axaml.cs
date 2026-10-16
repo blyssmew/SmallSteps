@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace SmallSteps.Views;
+namespace SmallSteps.Desktop.Views;
 
 public partial class MainWindow : Window
 {

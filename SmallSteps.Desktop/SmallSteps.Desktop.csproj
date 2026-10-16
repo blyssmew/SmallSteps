@@ -23,4 +23,9 @@
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmallSteps.Application\SmallSteps.Application.csproj" />
+    <ProjectReference Include="..\SmallSteps.Infrastructure\SmallSteps.Infrastructure.csproj" />
+  </ItemGroup>
 </Project>

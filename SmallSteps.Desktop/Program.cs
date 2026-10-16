@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using System;
 
-namespace SmallSteps;
+namespace SmallSteps.Desktop;
 
 sealed class Program
 {
