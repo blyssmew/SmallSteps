@@ -1,3 +1,8 @@
+<!--
+Copyright (C) 2026 blyssmew - Licensed under the GNU GPL v3.
+See the LICENSE file in the project root for full license details.
+-->
+
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:SmallSteps.Desktop.ViewModels"
@@ -11,7 +16,7 @@
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 

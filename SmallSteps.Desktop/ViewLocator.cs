@@ -1,3 +1,6 @@
+// Copyright (C) 2026 blyssmew - Licensed under the GNU GPL v3.
+// See the LICENSE file in the project root for full license details.
+
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Avalonia.Controls;
@@ -18,7 +21,7 @@ public class ViewLocator : IDataTemplate
     {
         if (param is null)
             return null;
-        
+
         var name = param.GetType().FullName!.Replace("ViewModel", "View", StringComparison.Ordinal);
         var type = Type.GetType(name);
 
@@ -26,7 +29,7 @@ public class ViewLocator : IDataTemplate
         {
             return (Control)Activator.CreateInstance(type)!;
         }
-        
+
         return new TextBlock { Text = "Not Found: " + name };
     }
 
