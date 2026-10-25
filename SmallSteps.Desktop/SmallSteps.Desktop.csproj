@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AvaloniaResource Include="../SmallSteps.Desktop/Assets/**" />
     <ProjectReference Include="..\SmallSteps.Application\SmallSteps.Application.csproj" />
     <ProjectReference Include="..\SmallSteps.Infrastructure\SmallSteps.Infrastructure.csproj" />
   </ItemGroup>

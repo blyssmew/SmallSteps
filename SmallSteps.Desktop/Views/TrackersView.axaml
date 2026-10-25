@@ -1,0 +1,148 @@
+<!--
+Copyright (C) 2026 blyssmew - Licensed under the GNU GPL v3.
+See the LICENSE file in the project root for full license details.
+-->
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="SmallSteps.Desktop.Views.TrackersView">
+
+    <Grid Classes="page-layout" RowDefinitions="Auto,Auto,*">
+        <StackPanel Grid.Row="0" Classes="spacing-4">
+            <TextBlock Classes="page-title" Text="My Trackers" />
+            <TextBlock Classes="subtitle" Text="Manage your personal milestones and progress." />
+        </StackPanel>
+
+        <Grid Grid.Row="1" Classes="column-gap-16" ColumnDefinitions="*,Auto">
+            <TextBox Grid.Column="0" Classes="text-input" PlaceholderText="Search trackers..." VerticalAlignment="Center" />
+            <Button Grid.Column="1" Classes="primary smooth" Content="+ Create New Tracker" VerticalAlignment="Center" />
+        </Grid>
+
+        <ScrollViewer Grid.Row="2" Classes="page-scroll tracker-grid-scroll">
+            <ItemsControl>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Classes="tracker-grid" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.Items>
+
+                    <!-- Example tracker: standard card -->
+                    <Border Classes="card compact tracker-card">
+                        <Grid RowDefinitions="Auto,*,Auto">
+                            <StackPanel Grid.Row="0" Classes="row spacing-8">
+                                <TextBlock Classes="visual-icon tracker-icon" Text="🔊" />
+                                <TextBlock Classes="item-title" Text="Vocalisation" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Classes="spacing-2" VerticalAlignment="Center">
+                                <TextBlock Classes="caption" Text="Entries: 15" />
+                                <TextBlock Classes="caption" Text="Goal: 3x/week" />
+                                <TextBlock Classes="caption" Text="Last updated: 2 hours ago" />
+                            </StackPanel>
+                            <Grid Grid.Row="2" Classes="column-gap-8" ColumnDefinitions="*,*">
+                                <Button Grid.Column="0" Classes="secondary smooth compact full-width" Content="View Details" />
+                                <Button Grid.Column="1" Classes="primary smooth compact full-width" Content="Log Entry" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                    <!-- Example tracker: accent card -->
+                    <Border Classes="card compact accent tracker-card">
+                        <Grid RowDefinitions="Auto,*,Auto">
+                            <StackPanel Grid.Row="0" Classes="row spacing-8">
+                                <TextBlock Classes="visual-icon tracker-icon" Text="👗" />
+                                <TextBlock Classes="item-title wrapped" Text="Expression de genre" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Classes="spacing-2" VerticalAlignment="Center">
+                                <TextBlock Classes="caption" Text="Entries: 22" />
+                                <TextBlock Classes="caption" Text="Goal: Daily reflection" />
+                                <TextBlock Classes="caption" Text="Last updated: Yesterday" />
+                            </StackPanel>
+                            <Grid Grid.Row="2" Classes="column-gap-8" ColumnDefinitions="*,*">
+                                <Button Grid.Column="0" Classes="secondary smooth compact full-width" Content="View Details" />
+                                <Button Grid.Column="1" Classes="primary smooth compact full-width" Content="Log Entry" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                    <!-- Example tracker -->
+                    <Border Classes="card compact tracker-card">
+                        <Grid RowDefinitions="Auto,*,Auto">
+                            <StackPanel Grid.Row="0" Classes="row spacing-8">
+                                <TextBlock Classes="visual-icon tracker-icon" Text="🧘" />
+                                <TextBlock Classes="item-title wrapped" Text="Mindfulness Practice" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Classes="spacing-2" VerticalAlignment="Center">
+                                <TextBlock Classes="caption" Text="Entries: 15" />
+                                <TextBlock Classes="caption" Text="Goal: 3x/week" />
+                                <TextBlock Classes="caption" Text="Last updated: 2 hours ago" />
+                            </StackPanel>
+                            <Grid Grid.Row="2" Classes="column-gap-8" ColumnDefinitions="*,*">
+                                <Button Grid.Column="0" Classes="secondary smooth compact full-width" Content="View Details" />
+                                <Button Grid.Column="1" Classes="primary smooth compact full-width" Content="Log Entry" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                    <!-- Example tracker -->
+                    <Border Classes="card compact tracker-card">
+                        <Grid RowDefinitions="Auto,*,Auto">
+                            <StackPanel Grid.Row="0" Classes="row spacing-8">
+                                <TextBlock Classes="visual-icon tracker-icon" Text="🧘" />
+                                <TextBlock Classes="item-title wrapped" Text="Mindfulness Practice" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Classes="spacing-2" VerticalAlignment="Center">
+                                <TextBlock Classes="caption" Text="Entries: 10" />
+                                <TextBlock Classes="caption" Text="Goal: 3x/week" />
+                                <TextBlock Classes="caption" Text="Last updated: 2 hours ago" />
+                            </StackPanel>
+                            <Grid Grid.Row="2" Classes="column-gap-8" ColumnDefinitions="*,*">
+                                <Button Grid.Column="0" Classes="secondary smooth compact full-width" Content="View Details" />
+                                <Button Grid.Column="1" Classes="primary smooth compact full-width" Content="Log Entry" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                    <!-- Example tracker: accent card -->
+                    <Border Classes="card compact accent tracker-card">
+                        <Grid RowDefinitions="Auto,*,Auto">
+                            <StackPanel Grid.Row="0" Classes="row spacing-8">
+                                <TextBlock Classes="visual-icon tracker-icon" Text="👗" />
+                                <TextBlock Classes="item-title wrapped" Text="Style Exploration" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Classes="spacing-2" VerticalAlignment="Center">
+                                <TextBlock Classes="caption" Text="Entries: 23" />
+                                <TextBlock Classes="caption" Text="Goal: Daily reflection" />
+                                <TextBlock Classes="caption" Text="Last updated: Yesterday" />
+                            </StackPanel>
+                            <Grid Grid.Row="2" Classes="column-gap-8" ColumnDefinitions="*,*">
+                                <Button Grid.Column="0" Classes="secondary smooth compact full-width" Content="View Details" />
+                                <Button Grid.Column="1" Classes="primary smooth compact full-width" Content="Log Entry" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                    <!-- Example tracker -->
+                    <Border Classes="card compact tracker-card">
+                        <Grid RowDefinitions="Auto,*,Auto">
+                            <StackPanel Grid.Row="0" Classes="row spacing-8">
+                                <TextBlock Classes="visual-icon tracker-icon" Text="📖" />
+                                <TextBlock Classes="item-title wrapped" Text="Identity Journaling" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Classes="spacing-2" VerticalAlignment="Center">
+                                <TextBlock Classes="caption" Text="Entries: 12" />
+                                <TextBlock Classes="caption" Text="Goal: Daily reflection" />
+                                <TextBlock Classes="caption" Text="Last updated: 2 hours ago" />
+                            </StackPanel>
+                            <Grid Grid.Row="2" Classes="column-gap-8" ColumnDefinitions="*,*">
+                                <Button Grid.Column="0" Classes="secondary smooth compact full-width" Content="View Details" />
+                                <Button Grid.Column="1" Classes="primary smooth compact full-width" Content="Log Entry" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                </ItemsControl.Items>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

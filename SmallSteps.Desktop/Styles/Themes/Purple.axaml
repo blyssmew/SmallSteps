@@ -1,0 +1,106 @@
+<!--
+Copyright (C) 2026 blyssmew - Licensed under the GNU GPL v3.
+See the LICENSE file in the project root for full license details.
+-->
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.ThemeDictionaries>
+
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush
+                x:Key="AccentBrush"
+                Color="#B9A5E8" />
+            <SolidColorBrush
+                x:Key="AccentForegroundBrush"
+                Color="#302147" />
+            <SolidColorBrush
+                x:Key="AccentTextBrush"
+                Color="#30283E" />
+            <SolidColorBrush
+                x:Key="HoverBrush"
+                Color="#A58BDE" />
+            <SolidColorBrush
+                x:Key="PressedBrush"
+                Color="#8E70D1" />
+            <SolidColorBrush
+                x:Key="FocusBrush"
+                Color="#9F83DB" />
+
+            <SolidColorBrush
+                x:Key="BackgroundBrush"
+                Color="#FCFAFF" />
+            <SolidColorBrush
+                x:Key="SurfaceBrush"
+                Color="#F4EFFC" />
+            <SolidColorBrush
+                x:Key="ElevatedSurfaceBrush"
+                Color="#FFFFFF" />
+            <SolidColorBrush
+                x:Key="InputBrush"
+                Color="#FFFEFF" />
+
+            <SolidColorBrush
+                x:Key="TextBrush"
+                Color="#30283E" />
+            <SolidColorBrush
+                x:Key="MutedTextBrush"
+                Color="#7A708B" />
+            <SolidColorBrush
+                x:Key="BorderBrush"
+                Color="#E1D8F0" />
+            <SolidColorBrush
+                x:Key="DisabledBrush"
+                Color="#ECE6F5" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush
+                x:Key="AccentBrush"
+                Color="#C7B7F1" />
+            <SolidColorBrush
+                x:Key="AccentForegroundBrush"
+                Color="#2F2348" />
+            <SolidColorBrush
+                x:Key="AccentTextBrush"
+                Color="#C7B7F1" />
+            <SolidColorBrush
+                x:Key="HoverBrush"
+                Color="#D6CAF6" />
+            <SolidColorBrush
+                x:Key="PressedBrush"
+                Color="#AE99E5" />
+            <SolidColorBrush
+                x:Key="FocusBrush"
+                Color="#C7B7F1" />
+
+            <SolidColorBrush
+                x:Key="BackgroundBrush"
+                Color="#191521" />
+            <SolidColorBrush
+                x:Key="SurfaceBrush"
+                Color="#241F30" />
+            <SolidColorBrush
+                x:Key="ElevatedSurfaceBrush"
+                Color="#2E283D" />
+            <SolidColorBrush
+                x:Key="InputBrush"
+                Color="#211C2C" />
+
+            <SolidColorBrush
+                x:Key="TextBrush"
+                Color="#F7F2FF" />
+            <SolidColorBrush
+                x:Key="MutedTextBrush"
+                Color="#B9ACC9" />
+            <SolidColorBrush
+                x:Key="BorderBrush"
+                Color="#443A56" />
+            <SolidColorBrush
+                x:Key="DisabledBrush"
+                Color="#352D43" />
+        </ResourceDictionary>
+
+    </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>

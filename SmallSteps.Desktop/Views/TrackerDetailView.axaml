@@ -1,0 +1,127 @@
+<!--
+Copyright (C) 2026 blyssmew - Licensed under the GNU GPL v3.
+See the LICENSE file in the project root for full license details.
+-->
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="SmallSteps.Desktop.Views.TrackerDetailView">
+
+    <ScrollViewer Classes="page-scroll">
+        <Grid Classes="page-layout" RowDefinitions="Auto,Auto,*">
+
+            <!-- Selected tracker -->
+            <Grid Grid.Row="0" Classes="column-gap-16" ColumnDefinitions="*,Auto">
+                <TextBlock
+                    Grid.Column="0"
+                    Classes="page-title"
+                    Text="Vocalisation Practice"
+                    VerticalAlignment="Center" />
+                <Button
+                    Grid.Column="1"
+                    Classes="secondary compact"
+                    Content="⚙️"
+                    VerticalAlignment="Center" />
+            </Grid>
+
+            <!-- New entry form -->
+            <Border Grid.Row="1" Classes="card">
+                <StackPanel Classes="spacing-16">
+                    <TextBlock Classes="section-title" Text="Add New Entry" />
+
+                    <CheckBox
+                        Classes="form-checkbox"
+                        Content="Completed Practice?"
+                        IsChecked="True" />
+
+                    <StackPanel Classes="spacing-6">
+                        <TextBlock Classes="subtitle" Text="Duration (minutes)" />
+                        <TextBox Classes="text-input" PlaceholderText="e.g. 20" />
+                    </StackPanel>
+
+                    <StackPanel Classes="spacing-6">
+                        <TextBlock Classes="subtitle" Text="Mood / Quality Rating" />
+                        <StackPanel Classes="row spacing-8">
+                            <TextBlock Classes="rating-star" Text="★" />
+                            <TextBlock Classes="rating-star" Text="★" />
+                            <TextBlock Classes="rating-star" Text="★" />
+                            <TextBlock Classes="rating-star" Text="★" />
+                            <TextBlock Classes="rating-star empty" Text="☆" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Classes="spacing-6">
+                        <TextBlock Classes="subtitle" Text="Notes" />
+                        <TextBox
+                            Classes="text-input multiline-input"
+                            PlaceholderText="Share how the exercise went..." />
+                    </StackPanel>
+
+                    <Button Classes="primary smooth full-width" Content="Add Entry" />
+                </StackPanel>
+            </Border>
+
+            <!-- Example practice history; entries will later come from the selected tracker -->
+            <Border Grid.Row="2" Classes="card">
+                <StackPanel Classes="spacing-16">
+                    <TextBlock Classes="section-title" Text="Practice History" />
+
+                    <ItemsControl>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Classes="spacing-12" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.Items>
+
+                            <Border Classes="inset-card">
+                                <Grid Classes="column-gap-12" ColumnDefinitions="Auto,*,Auto">
+                                    <TextBlock Grid.Column="0" Classes="visual-icon tracker-icon status-indicator" Text="●" />
+                                    <StackPanel Grid.Column="1" Classes="spacing-2">
+                                        <TextBlock Classes="item-title wrapped" Text="October 26, 2026 — 20 mins (★★★★☆)" />
+                                        <TextBlock Classes="caption wrapped" Text="Focused on head voice and breath support. Felt very stable." />
+                                    </StackPanel>
+                                    <Button Grid.Column="2" Classes="hyperlink" Content="Edit" VerticalAlignment="Center" />
+                                </Grid>
+                            </Border>
+
+                            <Border Classes="inset-card">
+                                <Grid Classes="column-gap-12" ColumnDefinitions="Auto,*,Auto">
+                                    <TextBlock Grid.Column="0" Classes="visual-icon tracker-icon status-indicator" Text="●" />
+                                    <StackPanel Grid.Column="1" Classes="spacing-2">
+                                        <TextBlock Classes="item-title wrapped" Text="October 25, 2026 — 15 mins (★★★☆☆)" />
+                                        <TextBlock Classes="caption wrapped" Text="Voice felt a bit raspy today, kept warm-ups shorter and gentle." />
+                                    </StackPanel>
+                                    <Button Grid.Column="2" Classes="hyperlink" Content="Edit" VerticalAlignment="Center" />
+                                </Grid>
+                            </Border>
+
+                            <Border Classes="inset-card">
+                                <Grid Classes="column-gap-12" ColumnDefinitions="Auto,*,Auto">
+                                    <TextBlock Grid.Column="0" Classes="visual-icon tracker-icon status-indicator" Text="●" />
+                                    <StackPanel Grid.Column="1" Classes="spacing-2">
+                                        <TextBlock Classes="item-title wrapped" Text="October 24, 2026 — 25 mins (★★★★★)" />
+                                        <TextBlock Classes="caption wrapped" Text="Amazing resonance breakthrough! Hit target high notes cleanly." />
+                                    </StackPanel>
+                                    <Button Grid.Column="2" Classes="hyperlink" Content="Edit" VerticalAlignment="Center" />
+                                </Grid>
+                            </Border>
+
+                            <Border Classes="inset-card">
+                                <Grid Classes="column-gap-12" ColumnDefinitions="Auto,*,Auto">
+                                    <TextBlock Grid.Column="0" Classes="visual-icon tracker-icon status-indicator" Text="●" />
+                                    <StackPanel Grid.Column="1" Classes="spacing-2">
+                                        <TextBlock Classes="item-title wrapped" Text="October 22, 2026 — 30 mins (★★★★☆)" />
+                                        <TextBlock Classes="caption wrapped" Text="Worked on pitch stability, vowel modification, and posture." />
+                                    </StackPanel>
+                                    <Button Grid.Column="2" Classes="hyperlink" Content="Edit" VerticalAlignment="Center" />
+                                </Grid>
+                            </Border>
+
+                        </ItemsControl.Items>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

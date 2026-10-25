@@ -1,0 +1,118 @@
+<!--
+Copyright (C) 2026 blyssmew - Licensed under the GNU GPL v3.
+See the LICENSE file in the project root for full license details.
+-->
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="SmallSteps.Desktop.Views.HomeView">
+
+    <Grid
+        Classes="page-layout two-column-layout"
+        RowDefinitions="Auto,*"
+        ColumnDefinitions="*,*">
+
+        <!-- Welcome header -->
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Classes="spacing-6">
+            <TextBlock Classes="page-title" Text="Hello, Blyss!" />
+            <TextBlock Classes="welcome-message" Text="Ready to take another small step today?" />
+            <TextBlock Classes="date-label" Text="Monday, October 26" />
+        </StackPanel>
+
+        <!-- Today's trackers -->
+        <Grid Grid.Row="1" Grid.Column="0" RowDefinitions="Auto,*">
+            <TextBlock
+                Grid.Row="0"
+                Classes="section-title section-heading"
+                Text="Today's Trackers" />
+
+            <ScrollViewer Grid.Row="1" Classes="page-scroll">
+                <ItemsControl>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Classes="card-list" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.Items>
+
+                        <Border Classes="card compact">
+                            <Grid ColumnDefinitions="Auto,*,Auto">
+                                <TextBlock Grid.Column="0" Classes="visual-icon item-icon" Text="🗣️" />
+                                <StackPanel Grid.Column="1" Classes="spacing-4" VerticalAlignment="Center">
+                                    <TextBlock Classes="item-title" Text="Vocalization" />
+                                    <TextBlock Classes="caption wrapped" Text="Daily pitch &amp; speech exercises" />
+                                </StackPanel>
+                                <Button Grid.Column="2" Classes="primary smooth compact" Content="Open" VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+
+                        <Border Classes="card compact">
+                            <Grid ColumnDefinitions="Auto,*,Auto">
+                                <TextBlock Grid.Column="0" Classes="visual-icon item-icon" Text="💪" />
+                                <StackPanel Grid.Column="1" Classes="spacing-4" VerticalAlignment="Center">
+                                    <TextBlock Classes="item-title" Text="Workout (Thing X)" />
+                                    <TextBlock Classes="caption wrapped" Text="Status: Not completed yet" />
+                                </StackPanel>
+                                <Button Grid.Column="2" Classes="primary smooth compact" Content="Open" VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+
+                        <Border Classes="card compact">
+                            <Grid ColumnDefinitions="Auto,*,Auto">
+                                <TextBlock Grid.Column="0" Classes="visual-icon item-icon" Text="📈" />
+                                <StackPanel Grid.Column="1" Classes="spacing-4" VerticalAlignment="Center">
+                                    <TextBlock Classes="item-title" Text="Project (Thing Y)" />
+                                    <TextBlock Classes="caption wrapped" Text="Current progress: 25%" />
+                                </StackPanel>
+                                <Button Grid.Column="2" Classes="primary smooth compact" Content="Open" VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+
+                    </ItemsControl.Items>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+
+        <!-- Recent progress logs -->
+        <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="Auto,*">
+            <TextBlock
+                Grid.Row="0"
+                Classes="section-title section-heading"
+                Text="Recent Progress Logs" />
+
+            <ScrollViewer Grid.Row="1" Classes="page-scroll">
+                <ItemsControl>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Classes="card-list" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.Items>
+
+                        <Border Classes="card compact">
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Grid.Column="0" Classes="visual-icon item-icon" Text="🚶" />
+                                <StackPanel Grid.Column="1" Classes="spacing-4" VerticalAlignment="Center">
+                                    <TextBlock Classes="item-title" Text="Went for a walk" />
+                                    <TextBlock Classes="caption" Text="October 26, 8:00 PM" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <Border Classes="card compact">
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Grid.Column="0" Classes="visual-icon item-icon" Text="📝" />
+                                <StackPanel Grid.Column="1" Classes="spacing-4" VerticalAlignment="Center">
+                                    <TextBlock Classes="item-title" Text="Wrote in journal" />
+                                    <TextBlock Classes="caption" Text="October 26, 8:00 PM" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                    </ItemsControl.Items>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+
+    </Grid>
+</UserControl>

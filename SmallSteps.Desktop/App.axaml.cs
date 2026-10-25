@@ -17,6 +17,7 @@ public partial class App : Avalonia.Application
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
+        PaletteManager.SetPalette(this, AppPalette.Pink);
     }
 
     public override void OnFrameworkInitializationCompleted()

@@ -2,24 +2,136 @@
 Copyright (C) 2026 blyssmew - Licensed under the GNU GPL v3.
 See the LICENSE file in the project root for full license details.
 -->
-
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:SmallSteps.Desktop.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="SmallSteps.Desktop.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="SmallSteps.Desktop">
+<Window
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:SmallSteps.Desktop.ViewModels"
+    xmlns:views="using:SmallSteps.Desktop.Views"
+    x:Class="SmallSteps.Desktop.Views.MainWindow"
+    x:DataType="vm:MainWindowViewModel"
+    Width="1000"
+    Height="700"
+    MinWidth="800"
+    MinHeight="500"
+    WindowStartupLocation="CenterScreen"
+    Icon="/Assets/avalonia-logo.ico"
+    Title="SmallSteps">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-        to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Window.DataTemplates>
+        <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+            <views:HomeView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TrackersViewModel}">
+            <views:TrackersView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+            <views:SettingsView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TrackerDetailViewModel}">
+            <views:TrackerDetailView />
+        </DataTemplate>
+    </Window.DataTemplates>
 
+    <DockPanel Classes="app-shell">
+
+        <!-- Sidebar -->
+        <Grid
+            Classes="sidebar"
+            DockPanel.Dock="Left">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Application name -->
+            <Border
+                Grid.Row="0"
+                Classes="sidebar-header">
+
+                <TextBlock
+                    Classes="app-name"
+                    Text="SmallSteps" />
+            </Border>
+
+            <!-- Navigation -->
+            <StackPanel
+                Grid.Row="1"
+                Classes="navigation-list spacing-8">
+
+                <!-- Home -->
+                <Button
+                    Classes="navigation active"
+                    Command="{Binding ShowHomeCommand}">
+
+                    <DockPanel>
+                        <PathIcon
+                            Classes="navigation-icon"
+                            Data="M347.4 55.2C306.6 31.7 263.4 71.1 233.9 95.3C223 104.5 212.4 112.6 201.1 120.7C182.1 134.7 162.6 149.2 142.4 163.2C112.2 186.8 63.1 207.4 64.2 252.3L64.2 515C64.2 545.4 85.8 572.5 117.1 577.5C209 587.6 302 582.4 394 582.6C423.6 582.6 482.8 578.3 517.5 575.6C550.8 573 576.2 545.3 576.3 512.2C576.5 465.7 576.8 380.1 577.1 365.3C577.9 335.4 576.9 276.7 576.4 250.5C576.1 232.9 568.5 216.1 555.1 204.3C536.5 187.6 511.5 166.9 490.1 154.2C440 122.1 400.7 81.3 347.3 55.4L347.3 55.4zM314.5 114.6C315.1 114.2 316.5 113.5 318.8 112.4C368.8 136.9 410.9 180.6 458.2 209.5C477.4 221.3 492.4 233.9 512.5 251.8C514.5 339.8 512.2 405.8 512.3 511.7C491.1 513.3 462.7 515.4 437.5 516.8C428.2 439.4 416.6 300.1 304.8 320.4C213.1 350.6 222.2 446.5 219.5 518.3C186.1 516.9 163.5 520.3 128.2 514.3L128.2 252.5C189.9 208.3 254.1 160.5 314.4 114.6L314.4 114.6zM283.5 519.8C284.4 477.8 279.6 393.8 321.2 382.4C328.2 380.5 332.9 382 338.6 387.8C364.9 421.9 367.1 476.2 373.4 518.6C361.5 518.7 349.9 518.9 338.4 519.1C319.9 519.5 301.7 519.8 283.5 519.7z" />
+
+                        <TextBlock
+                            Classes="navigation-label"
+                            Text="Home" />
+                    </DockPanel>
+                </Button>
+
+                <!-- Trackers -->
+                <Button
+                    Classes="navigation"
+                    Command="{Binding ShowTrackersCommand}">
+
+                    <DockPanel>
+                        <PathIcon
+                            Classes="navigation-icon"
+                            Data="M102.3 211.8C110.7 214 118.9 213.7 126.2 210C132.6 208 138.3 204 142.4 198.4C184.2 169.6 148.5 98.8 98.3 108.3C39.6 119.9 49.3 205.8 102.2 211.8zM114.4 375.6C114.4 375.6 114.8 375.5 116.2 375.3L116.5 375.2C169.2 368.9 178.6 283.3 120.1 271.7C69.9 262.3 34.2 332.9 76 361.8C80.1 367.4 85.9 371.4 92.3 373.4C99 376.6 106.8 377.6 114.5 375.5zM116.8 423.5C63.5 413.9 30 495.4 84.4 522.3C130.5 544.4 183.2 485.4 150.4 446.7C147.9 440.2 143.4 434.9 137.7 431.2C132.1 426.4 124.8 423.5 116.8 423.5zM352.8 508.4C423.1 503.6 491.2 499 561.5 501.8C579.2 502.5 594.1 488.8 594.8 471.1C595.5 453.4 581.7 438.6 564.1 437.9C490.4 435 416.4 439.9 344.2 444.8C310.8 447 277.8 449.3 245.4 450.7C227.7 451.4 214 466.4 214.8 484C215.5 501.7 230.5 515.4 248.1 514.6C283.8 513 318.6 510.7 352.8 508.4zM344 344.8L344.3 344.8C412.9 343.4 479.9 342.9 548.3 346.2C566 347 580.9 333.3 581.7 315.6C582.5 298 568.8 283 551.1 282.2C482.2 278.8 412.2 279.3 343.1 280.7C310.3 281.3 277.9 281.9 245.8 281.9C228.1 281.9 213.8 296.2 213.8 313.9C213.8 331.6 228.1 345.9 245.8 345.9C278.5 345.9 311.4 345.3 343.9 344.7zM444.8 187.4C480.8 186.5 519 181.7 551.8 187.6C569.2 190.7 585.8 179.1 588.9 161.7C592 144.3 580.4 127.7 563 124.6C484.4 115.2 408.3 126.5 331 129.9C301.8 131.9 273.7 133 246 131.4C228.4 130.3 213.2 143.8 212.2 161.4C213.8 217.2 300.2 190.8 335.5 193.7C372.2 191.2 408.7 188.4 444.8 187.4z" />
+
+                        <TextBlock
+                            Classes="navigation-label"
+                            Text="My trackers" />
+                    </DockPanel>
+                </Button>
+
+                <!-- Pinned tracker -->
+                <Button
+                    Classes="navigation"
+                    Command="{Binding ShowTrackerDetailCommand}">
+
+                    <DockPanel>
+                        <PathIcon
+                            Classes="navigation-icon"
+                            Data="M303.7 134.9C282.9 145.8 290.9 179.5 287.7 198.9C286.5 236.1 277.2 289.9 305.4 316.6C312.6 322.9 329.2 319.8 339.5 315.6C356.3 311 360.2 269.2 357.5 248.1C353.7 209.9 368 108.6 303.7 134.9L303.7 134.9zM225.7 159.7C226.2 84.2 303.3 48.2 364 76.2C425.7 107.7 419.1 185.9 421.4 242.6C429.5 309.6 401 387.2 314.6 383.9C220.8 378.9 215.2 261.8 224 192.2C224.7 180.9 225.3 170 225.7 159.6zM519.2 246.4C536.8 248.1 549.7 263.8 547.9 281.4C541.8 394 468.9 494.6 354.4 510.6C355.2 537.5 360.2 583 320.3 581.7C283.6 578.6 291.1 539.6 290.4 512.4C180.8 491.9 90.7 398 97.2 287.7C97.2 270 111.5 255.7 129.2 255.7C146.9 255.7 161.2 270 161.2 287.7C159.3 354.3 193.5 401.2 246.7 428.6C300.7 461 358.7 454.9 410.3 422.6C438.2 396.8 453.9 378.2 464.1 358.2C474.3 338.2 480.3 314.2 484.1 275.1C485.8 257.5 501.5 244.6 519.1 246.4z" />
+
+                        <TextBlock
+                            Classes="navigation-label"
+                            Text="Vocalisation" />
+                    </DockPanel>
+                </Button>
+
+                <!-- Settings -->
+                <Button
+                    Classes="navigation"
+                    Command="{Binding ShowSettingsCommand}">
+
+                    <DockPanel>
+                        <PathIcon
+                            Classes="navigation-icon"
+                            Data="M281.9 127.9L281.9 127.9C296.7 122.2 324.9 122.6 344.3 123.2C352.1 123.6 359.4 127.5 360.4 134.7C362.4 151 360 170.5 376 180.5C381.3 184.1 387 188 392.4 191.8C414.7 208.7 439.7 196.9 465.4 191.8C476.2 210 488.2 231.1 501.9 247.8C452.4 289.6 448.5 335.2 493.7 381C491.4 398.5 469.2 428.8 460.7 439.8C416.4 426.5 370.9 448.3 352.7 492.4C348.9 499.4 344.5 504.5 341.1 512.4C328.2 515 300 512.6 287.6 508.3C278.5 478.2 265.1 448.6 236.9 436.7C213 423.8 187.7 429.7 165 429.6C160.4 416.8 132.6 392.5 143.2 379.3C151.6 371 160.9 361.7 165.5 356.5C176.7 346.1 173.8 316.8 175.8 303.1C176.5 278.1 158.5 273.5 138.3 259.1L176.3 192.7C190.5 194.1 223.1 206.3 236.5 197.5C242.5 194.2 253.8 189.7 258.3 184.3C275 167 274.2 146.2 281.7 127.9zM424.8 135.4C419.6 48.3 316.5 48 254.8 69.9C221 87.5 219.7 112.3 213.4 134.7L177.4 127.7C157.2 123.8 136.8 133.2 126.6 151L75.6 240.2C56.7 272.9 81.5 302.5 110.9 317.5L110.6 321.5C78.9 346.5 64.6 391.7 88.1 427.1C95.7 439 104.1 452.4 111 463.5C127.8 490.3 158.7 497.6 183.1 493.1C195.9 490.7 204.5 492 209.5 494.3C218.5 496.1 224.7 523.8 228.1 532.5C240.1 582.9 340.5 585.8 377.7 566.7C395.9 557 396.9 541 409.7 521.5C418.4 504.5 423.4 501.8 424.8 501.1C426.6 500.3 431.7 498.9 449 502.6C495.8 517.5 530.3 455.4 547.5 421.4C559.2 400.8 564.1 370.1 546.3 344.4C539.8 335.3 529.3 324.4 525.7 317.3C527.6 309.9 549.7 292.1 557.7 281.7C578.3 257.4 564.3 218.5 545.3 199C508 141.2 504.4 110.2 424.8 135.3zM165.2 429.6L165.2 429.6zM282.1 127.7C282.2 127.6 282.3 127.5 282.3 127.5C282.3 127.5 282.2 127.6 282.1 127.7zM244.4 258.8C181.1 342.5 276.3 447.6 359.9 402.6C421.6 367.8 442.2 265.8 368.7 232.1C327.1 212.4 275.5 217.8 244.4 258.8C244.4 258.8 244.4 258.8 244.4 258.8zM341.2 289.9C365.7 302.9 344.7 336.7 326.7 347.9C267.5 356.7 281.1 262.3 341.2 289.9z" />
+
+                        <TextBlock
+                            Classes="navigation-label"
+                            Text="Settings" />
+                    </DockPanel>
+                </Button>
+
+            </StackPanel>
+        </Grid>
+
+        <!-- Active page -->
+        <ContentControl Content="{Binding CurrentPage}" />
+
+    </DockPanel>
 </Window>

@@ -1,0 +1,97 @@
+<!--
+Copyright (C) 2026 blyssmew - Licensed under the GNU GPL v3.
+See the LICENSE file in the project root for full license details.
+-->
+<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Standard page frame -->
+    <Style Selector="Grid.page-layout">
+        <Setter Property="Margin" Value="24" />
+        <Setter Property="RowSpacing" Value="20" />
+    </Style>
+
+    <Style Selector="Grid.two-column-layout">
+        <Setter Property="ColumnSpacing" Value="20" />
+    </Style>
+
+    <!-- Reusable spacing scale -->
+    <Style Selector="StackPanel.spacing-2">
+        <Setter Property="Spacing" Value="2" />
+    </Style>
+    <Style Selector="StackPanel.spacing-4">
+        <Setter Property="Spacing" Value="4" />
+    </Style>
+    <Style Selector="StackPanel.spacing-6">
+        <Setter Property="Spacing" Value="6" />
+    </Style>
+    <Style Selector="StackPanel.spacing-8">
+        <Setter Property="Spacing" Value="8" />
+    </Style>
+    <Style Selector="StackPanel.spacing-12">
+        <Setter Property="Spacing" Value="12" />
+    </Style>
+    <Style Selector="StackPanel.spacing-16">
+        <Setter Property="Spacing" Value="16" />
+    </Style>
+    <Style Selector="StackPanel.spacing-20">
+        <Setter Property="Spacing" Value="20" />
+    </Style>
+
+    <Style Selector="StackPanel.row">
+        <Setter Property="Orientation" Value="Horizontal" />
+    </Style>
+
+    <!-- Repeated card collections leave room for the scrollbar -->
+    <Style Selector="StackPanel.card-list">
+        <Setter Property="Spacing" Value="12" />
+        <Setter Property="Margin" Value="0,0,8,0" />
+    </Style>
+
+    <!-- Common Grid column gaps for recurring layouts -->
+    <Style Selector="Grid.column-gap-8">
+        <Setter Property="ColumnSpacing" Value="8" />
+    </Style>
+    <Style Selector="Grid.column-gap-12">
+        <Setter Property="ColumnSpacing" Value="12" />
+    </Style>
+    <Style Selector="Grid.column-gap-16">
+        <Setter Property="ColumnSpacing" Value="16" />
+    </Style>
+
+    <Style Selector="TextBlock.section-heading">
+        <Setter Property="Margin" Value="0,0,0,12" />
+    </Style>
+
+    <Style Selector="ScrollViewer.page-scroll">
+        <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+    </Style>
+
+    <!-- Palette swatches: colours belong to classes, not page markup -->
+    <Style Selector="Border.theme-swatch">
+        <Setter Property="Width" Value="36" />
+        <Setter Property="Height" Value="36" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style Selector="Border.theme-swatch.selected">
+        <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+    </Style>
+    <Style Selector="Border.theme-swatch.swatch-blue">
+        <Setter Property="Background" Value="#A4C2F4" />
+    </Style>
+    <Style Selector="Border.theme-swatch.swatch-pink">
+        <Setter Property="Background" Value="#FAD2E1" />
+    </Style>
+    <Style Selector="Border.theme-swatch.swatch-purple">
+        <Setter Property="Background" Value="#D0C4DF" />
+    </Style>
+    <Style Selector="Border.theme-swatch.swatch-cream">
+        <Setter Property="Background" Value="#EFE5DC" />
+    </Style>
+
+</Styles>

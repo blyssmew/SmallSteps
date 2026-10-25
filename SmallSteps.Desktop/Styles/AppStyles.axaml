@@ -1,0 +1,17 @@
+<!--
+Copyright (C) 2026 blyssmew - Licensed under the GNU GPL v3.
+See the LICENSE file in the project root for full license details.
+-->
+<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <StyleInclude Source="avares://SmallSteps.Desktop/Styles/Typography.axaml" />
+    <StyleInclude Source="avares://SmallSteps.Desktop/Styles/Components/LayoutStyles.axaml" />
+    <StyleInclude Source="avares://SmallSteps.Desktop/Styles/Components/ShellStyles.axaml" />
+    <StyleInclude Source="avares://SmallSteps.Desktop/Styles/Controls/CardStyles.axaml" />
+    <StyleInclude Source="avares://SmallSteps.Desktop/Styles/Controls/ButtonStyles.axaml" />
+    <StyleInclude Source="avares://SmallSteps.Desktop/Styles/Controls/InputStyles.axaml" />
+    <StyleInclude Source="avares://SmallSteps.Desktop/Styles/Components/TrackerStyles.axaml" />
+
+</Styles>

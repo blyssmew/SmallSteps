@@ -1,0 +1,25 @@
+<!--
+Copyright (C) 2026 blyssmew - Licensed under the GNU GPL v3.
+See the LICENSE file in the project root for full license details.
+-->
+<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Size of cards in the tracker gallery -->
+    <Style Selector="Border.tracker-card">
+        <Setter Property="Width" Value="276" />
+        <Setter Property="Height" Value="148" />
+    </Style>
+
+    <!-- Wrapping layout leaves a consistent gap around tracker cards -->
+    <Style Selector="WrapPanel.tracker-grid">
+        <Setter Property="ItemWidth" Value="290" />
+        <Setter Property="ItemHeight" Value="160" />
+    </Style>
+
+    <Style Selector="ScrollViewer.tracker-grid-scroll">
+        <Setter Property="Margin" Value="0,4,0,0" />
+    </Style>
+
+</Styles>

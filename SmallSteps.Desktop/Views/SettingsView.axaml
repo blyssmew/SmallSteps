@@ -1,0 +1,75 @@
+<!--
+Copyright (C) 2026 blyssmew - Licensed under the GNU GPL v3.
+See the LICENSE file in the project root for full license details.
+-->
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="SmallSteps.Desktop.Views.SettingsView">
+
+    <ScrollViewer Classes="page-scroll">
+        <Grid Classes="page-layout" RowDefinitions="Auto,Auto,*">
+
+            <TextBlock Grid.Row="0" Classes="page-title" Text="Settings" />
+
+            <Grid Grid.Row="1" Classes="two-column-layout" ColumnDefinitions="*,*">
+
+                <!-- Appearance -->
+                <Border Grid.Column="0" Classes="card" VerticalAlignment="Top">
+                    <StackPanel Classes="spacing-16">
+                        <TextBlock Classes="section-title" Text="Appearance" />
+                        <StackPanel Classes="spacing-8">
+                            <TextBlock Classes="subtitle" Text="Color theme" />
+                            <StackPanel Classes="row spacing-12">
+                                <Border Classes="theme-swatch swatch-blue selected" />
+                                <Border Classes="theme-swatch swatch-pink" />
+                                <Border Classes="theme-swatch swatch-purple" />
+                                <Border Classes="theme-swatch swatch-cream" />
+                            </StackPanel>
+                        </StackPanel>
+                        <Button Classes="primary smooth full-width" Content="Save Theme" />
+                        <Button Classes="secondary smooth centered" Content="Palettes works!" Click="TogglePalette_Click" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Local data -->
+                <Border Grid.Column="1" Classes="card" VerticalAlignment="Top">
+                    <StackPanel Classes="spacing-16">
+                        <TextBlock Classes="section-title" Text="Local Data" />
+                        <Button Classes="primary smooth align-left" Content="📥  Export Data" />
+                        <StackPanel Classes="spacing-6">
+                            <TextBlock
+                                Classes="subtitle wrapped"
+                                Text="Local storage folder path for the SQLite database:" />
+                            <TextBox
+                                Classes="text-input"
+                                Text="C:/Users/Blyss/AppData/Local/SmallSteps"
+                                IsReadOnly="True" />
+                        </StackPanel>
+                        <Button Classes="primary smooth align-left" Content="Change Folder" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- About -->
+            <Border Grid.Row="2" Classes="card" VerticalAlignment="Top">
+                <StackPanel Classes="spacing-12">
+                    <TextBlock Classes="section-title" Text="About" />
+                    <StackPanel Classes="spacing-2">
+                        <TextBlock Classes="page-title" Text="SmallSteps" />
+                        <TextBlock Classes="caption" Text="Version 0.0.1" />
+                    </StackPanel>
+                    <TextBlock
+                        Classes="subtitle wrapped"
+                        Text="Your data is stored locally on your device only. We prioritize your privacy and do not collect or transmit your personal data." />
+                    <StackPanel Classes="row spacing-20">
+                        <Button Classes="hyperlink" Content="Licenses" />
+                        <Button Classes="hyperlink" Content="Support" />
+                        <Button Classes="hyperlink" Content="Terms" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>
