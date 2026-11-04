@@ -11,6 +11,11 @@ namespace SmallSteps.Domain.Fields
     /// </summary>
     public class FieldDefinition
     {
+        private readonly Guid _id;
+        private readonly FieldType _type;
+        private string _name;
+        private int _displayOrder;
+
         /// <summary>
         /// Initializes a new field definition.
         /// </summary>
@@ -33,31 +38,55 @@ namespace SmallSteps.Domain.Fields
 
             ArgumentOutOfRangeException.ThrowIfNegative(displayOrder);
 
-            Id = Guid.NewGuid();
-            Name = name.Trim();
-            Type = type;
-            DisplayOrder = displayOrder;
+            _id = Guid.NewGuid();
+            _name = name.Trim();
+            _type = type;
+            _displayOrder = displayOrder;
         }
 
         /// <summary>
         /// Gets the field's unique identifier.
         /// </summary>
-        public Guid Id { get; }
+        public Guid Id
+        {
+            get
+            {
+                return _id;
+            }
+        }
 
         /// <summary>
         /// Gets the field's display name.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+        }
 
         /// <summary>
         /// Gets the field's expected value type.
         /// </summary>
-        public FieldType Type { get; }
+        public FieldType Type
+        {
+            get
+            {
+                return _type;
+            }
+        }
 
         /// <summary>
         /// Gets the field's display position.
         /// </summary>
-        public int DisplayOrder { get; private set; }
+        public int DisplayOrder
+        {
+            get
+            {
+                return _displayOrder;
+            }
+        }
 
         /// <summary>
         /// Changes the field's display name.
@@ -72,7 +101,7 @@ namespace SmallSteps.Domain.Fields
                 throw new ArgumentException("Field name cannot be empty.", nameof(name));
             }
 
-            Name = name.Trim();
+            _name = name.Trim();
         }
 
         /// <summary>
@@ -82,7 +111,8 @@ namespace SmallSteps.Domain.Fields
         public void ChangeDisplayOrder(int displayOrder)
         {
             ArgumentOutOfRangeException.ThrowIfNegative(displayOrder);
-            DisplayOrder = displayOrder;
+
+            _displayOrder = displayOrder;
         }
     }
 }
