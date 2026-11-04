@@ -5,6 +5,7 @@ namespace SmallSteps.Domain.Abstractions
 {
     /// <summary>
     /// Defines a typed answer value for a field.
+    /// Contient une réponse
     /// </summary>
     /// <typeparam name="T">The data type.</typeparam>
     public interface IFieldValue<T>

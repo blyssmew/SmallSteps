@@ -7,6 +7,7 @@ namespace SmallSteps.Domain.FieldTypes
 
     /// <summary>
     /// Represents a checkbox answer.
+    /// Contient une réponse
     /// </summary>
     public class CheckboxValue : IFieldValue<bool>
     {

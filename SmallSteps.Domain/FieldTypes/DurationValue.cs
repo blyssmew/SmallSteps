@@ -8,6 +8,7 @@ namespace SmallSteps.Domain.FieldTypes
 
     /// <summary>
     /// Represents a duration answer in minutes.
+    /// Contient une réponse
     /// </summary>
     public class DurationValue : IFieldValue<int>
     {

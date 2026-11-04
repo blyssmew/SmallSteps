@@ -8,6 +8,7 @@ namespace SmallSteps.Domain.FieldTypes
 
     /// <summary>
     /// Represents a text answer.
+    /// Contient une réponse
     /// </summary>
     public class TextValue : IFieldValue<string>
     {
