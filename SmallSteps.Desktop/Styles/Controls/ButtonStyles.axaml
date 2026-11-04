@@ -8,158 +8,289 @@ See the LICENSE file in the project root for full license details.
 
     <!-- Shared button typography -->
     <Style Selector="Button">
-        <Setter Property="FontSize" Value="14" />
+        <Setter
+            Property="FontSize"
+            Value="14" />
     </Style>
 
     <!-- Primary action -->
     <Style Selector="Button.primary">
-        <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrush}" />
-        <Setter Property="Padding" Value="16,8" />
-        <Setter Property="CornerRadius" Value="6" />
+        <Setter
+            Property="Background"
+            Value="{DynamicResource AccentBrush}" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource AccentForegroundBrush}" />
+        <Setter
+            Property="Padding"
+            Value="16,8" />
+        <Setter
+            Property="CornerRadius"
+            Value="6" />
     </Style>
     <Style Selector="Button.primary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource HoverBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrush}" />
+        <Setter
+            Property="Background"
+            Value="{DynamicResource HoverBrush}" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource AccentForegroundBrush}" />
     </Style>
     <Style Selector="Button.primary:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource PressedBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrush}" />
-        <Setter Property="Opacity" Value="0.85" />
-    </Style>
-    <Style Selector="Button.primary:focus">
-        <Setter Property="BorderBrush" Value="{DynamicResource FocusBrush}" />
-        <Setter Property="BorderThickness" Value="2" />
+        <Setter
+            Property="Background"
+            Value="{DynamicResource PressedBrush}" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource AccentForegroundBrush}" />
+        <Setter
+            Property="Opacity"
+            Value="0.85" />
     </Style>
     <Style Selector="Button.primary:disabled /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource DisabledBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+        <Setter
+            Property="Background"
+            Value="{DynamicResource DisabledBrush}" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource MutedTextBrush}" />
     </Style>
 
     <!-- Secondary action -->
     <Style Selector="Button.secondary">
-        <Setter Property="Background" Value="{DynamicResource InputBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Padding" Value="16,8" />
-        <Setter Property="CornerRadius" Value="6" />
+        <Setter
+            Property="Background"
+            Value="{DynamicResource InputBrush}" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource TextBrush}" />
+        <Setter
+            Property="BorderBrush"
+            Value="{DynamicResource BorderBrush}" />
+        <Setter
+            Property="BorderThickness"
+            Value="1" />
+        <Setter
+            Property="Padding"
+            Value="16,8" />
+        <Setter
+            Property="CornerRadius"
+            Value="6" />
     </Style>
     <Style Selector="Button.secondary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource SurfaceBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter
+            Property="Background"
+            Value="{DynamicResource SurfaceBrush}" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource TextBrush}" />
     </Style>
     <Style Selector="Button.secondary:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource PressedBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrush}" />
-        <Setter Property="Opacity" Value="0.85" />
-    </Style>
-    <Style Selector="Button.secondary:focus">
-        <Setter Property="BorderBrush" Value="{DynamicResource FocusBrush}" />
-        <Setter Property="BorderThickness" Value="2" />
+        <Setter
+            Property="Background"
+            Value="{DynamicResource PressedBrush}" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource AccentForegroundBrush}" />
+        <Setter
+            Property="Opacity"
+            Value="0.85" />
     </Style>
     <Style Selector="Button.secondary:disabled /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource DisabledBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+        <Setter
+            Property="Background"
+            Value="{DynamicResource DisabledBrush}" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource MutedTextBrush}" />
     </Style>
 
     <!-- Size and alignment modifiers -->
     <Style Selector="Button.compact">
-        <Setter Property="Padding" Value="10,6" />
+        <Setter
+            Property="Padding"
+            Value="10,6" />
     </Style>
     <Style Selector="Button.full-width">
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Stretch" />
+        <Setter
+            Property="HorizontalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Center" />
     </Style>
     <Style Selector="Button.align-left">
-        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Left" />
     </Style>
     <Style Selector="Button.centered">
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Center" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Center" />
     </Style>
 
     <!-- Short, text-only actions -->
     <Style Selector="Button.hyperlink">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="{DynamicResource AccentTextBrush}" />
-        <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="Padding" Value="0" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter
+            Property="Background"
+            Value="Transparent" />
+        <Setter
+            Property="BorderBrush"
+            Value="Transparent" />
+        <Setter
+            Property="BorderThickness"
+            Value="0" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource AccentTextBrush}" />
+        <Setter
+            Property="FontWeight"
+            Value="Normal" />
+        <Setter
+            Property="Padding"
+            Value="0" />
+        <Setter
+            Property="Cursor"
+            Value="Hand" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            Property="HorizontalContentAlignment"
+            Value="Left" />
     </Style>
     <Style Selector="Button.hyperlink:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Foreground" Value="{DynamicResource AccentTextBrush}" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Opacity" Value="0.85" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource AccentTextBrush}" />
+        <Setter
+            Property="Background"
+            Value="Transparent" />
+        <Setter
+            Property="Opacity"
+            Value="0.85" />
     </Style>
     <Style Selector="Button.hyperlink:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Foreground" Value="{DynamicResource AccentTextBrush}" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Opacity" Value="0.85" />
-    </Style>
-    <Style Selector="Button.hyperlink:focus">
-        <Setter Property="Foreground" Value="{DynamicResource AccentTextBrush}" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource AccentTextBrush}" />
+        <Setter
+            Property="Background"
+            Value="Transparent" />
+        <Setter
+            Property="Opacity"
+            Value="0.85" />
     </Style>
 
     <!-- Navigation buttons -->
     <Style Selector="Button.navigation">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-        <Setter Property="Padding" Value="12,10" />
-        <Setter Property="CornerRadius" Value="10" />
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter
+            Property="Background"
+            Value="Transparent" />
+        <Setter
+            Property="BorderBrush"
+            Value="Transparent" />
+        <Setter
+            Property="BorderThickness"
+            Value="0" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource TextBrush}" />
+        <Setter
+            Property="Padding"
+            Value="12,10" />
+        <Setter
+            Property="CornerRadius"
+            Value="10" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Stretch" />
+        <Setter
+            Property="HorizontalContentAlignment"
+            Value="Stretch" />
         <Setter Property="Transitions">
             <Transitions>
-                <BrushTransition Property="Background" Duration="0:0:0.15" />
+                <BrushTransition
+                    Property="Background"
+                    Duration="0:0:0.15" />
             </Transitions>
         </Setter>
     </Style>
     <Style Selector="Button.navigation:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource SurfaceBrush}" />
+        <Setter
+            Property="Background"
+            Value="{DynamicResource SurfaceBrush}" />
     </Style>
     <Style Selector="Button.navigation:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource SurfaceBrush}" />
-        <Setter Property="Opacity" Value="0.85" />
+        <Setter
+            Property="Background"
+            Value="{DynamicResource SurfaceBrush}" />
+        <Setter
+            Property="Opacity"
+            Value="0.85" />
     </Style>
     <Style Selector="Button.navigation.active">
-        <Setter Property="Background" Value="{DynamicResource SurfaceBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource AccentTextBrush}" />
+        <Setter
+            Property="Background"
+            Value="{DynamicResource SurfaceBrush}" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource AccentTextBrush}" />
     </Style>
     <Style Selector="Button.navigation.active TextBlock.navigation-label">
-        <Setter Property="Foreground" Value="{DynamicResource AccentTextBrush}" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource AccentTextBrush}" />
     </Style>
     <Style Selector="Button.navigation.active PathIcon.navigation-icon">
-        <Setter Property="Foreground" Value="{DynamicResource AccentTextBrush}" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource AccentTextBrush}" />
     </Style>
     <Style Selector="Button.navigation:disabled">
-        <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource MutedTextBrush}" />
     </Style>
 
     <!-- Shared transitions -->
     <Style Selector="Button.smooth">
         <Setter Property="Transitions">
             <Transitions>
-                <BrushTransition Property="Background" Duration="0:0:0.15" />
-                <DoubleTransition Property="Opacity" Duration="0:0:0.15" />
+                <BrushTransition
+                    Property="Background"
+                    Duration="0:0:0.15" />
+                <DoubleTransition
+                    Property="Opacity"
+                    Duration="0:0:0.15" />
             </Transitions>
         </Setter>
     </Style>
 
-    <!-- Navigation glyph sizing / positioning -->
+    <!-- Navigation iccon sizing / positioning -->
     <Style Selector="PathIcon.navigation-icon">
-        <Setter Property="DockPanel.Dock" Value="Left" />
-        <Setter Property="Width" Value="16" />
-        <Setter Property="Height" Value="16" />
-        <Setter Property="Margin" Value="0,0,8,0" />
-        <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+        <Setter
+            Property="DockPanel.Dock"
+            Value="Left" />
+        <Setter
+            Property="Width"
+            Value="16" />
+        <Setter
+            Property="Height"
+            Value="16" />
+        <Setter
+            Property="Margin"
+            Value="0,0,8,0" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource MutedTextBrush}" />
     </Style>
 
 </Styles>
