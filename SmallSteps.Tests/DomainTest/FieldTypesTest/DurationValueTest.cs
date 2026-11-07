@@ -1,7 +1,7 @@
 // Copyright (C) 2026 blyssmew - Licensed under the GNU GPL v3.
 // See the LICENSE file in the project root for full license details.
 
-namespace SmallSteps.Tests.FieldTypesTest
+namespace SmallSteps.Tests.DomainTest.FieldTypesTest
 {
     using Xunit;
     using SmallSteps.Domain.FieldTypes;
