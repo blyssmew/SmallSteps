@@ -5,280 +5,324 @@
 namespace SmallSteps.Tests.EntriesTest
 {
     using System;
-    using System.Globalization;
+    using System.Collections.Generic;
     using SmallSteps.Domain.Entries;
+    using SmallSteps.Domain.Fields;
+    using SmallSteps.Domain.Responses;
+    using SmallSteps.Domain.Trackers;
     using Xunit;
 
-    public class EntryTest
+    public class EntryResponseTest
     {
-        private static DateTimeOffset CreateDate()
+        private static (
+            Tracker Tracker,
+            Entry Entry,
+            FieldDefinition Field)
+            CreateSetup()
         {
-            return new DateTimeOffset(
-                2026, 11, 6, 13, 30, 0,
-                TimeSpan.FromHours(-5));
+            Tracker tracker = new Tracker("Test tracker");
+
+            FieldDefinition field = new FieldDefinition(
+                "Test field",
+                FieldType.Text,
+                0);
+
+            tracker.AddField(field);
+
+            Entry entry = new Entry(
+                tracker.Id,
+                DateTimeOffset.UtcNow);
+
+            return (tracker, entry, field);
         }
 
-        // Constructor
-
-        [Fact]
-        public void Constructor_ShouldGenerateNonEmptyId()
+        private static Response CreateResponse(
+            Entry entry,
+            Tracker tracker,
+            FieldDefinition field)
         {
-            Entry entry = new(Guid.NewGuid(), CreateDate());
-
-            Assert.NotEqual(Guid.Empty, entry.Id);
+            return new Response(entry, tracker, field);
         }
 
-        [Fact]
-        public void Constructor_ShouldGenerateUniqueIds()
-        {
-            Guid trackerId = Guid.NewGuid();
-            DateTimeOffset date = CreateDate();
-
-            Entry first = new(trackerId, date);
-            Entry second = new(trackerId, date);
-
-            Assert.NotEqual(first.Id, second.Id);
-        }
+        // Initial collection
 
         [Fact]
-        public void Constructor_ShouldPreserveTrackerId()
+        public void Constructor_ShouldInitializeEmptyResponses()
         {
-            Guid trackerId = Guid.NewGuid();
+            var setup = CreateSetup();
 
-            Entry entry = new(trackerId, CreateDate());
-
-            Assert.Equal(trackerId, entry.TrackerId);
-        }
-
-        [Fact]
-        public void Constructor_ShouldRejectEmptyTrackerId()
-        {
-            ArgumentException exception = Assert.Throws<ArgumentException>(() => new Entry(Guid.Empty, CreateDate()));
-
-            Assert.Equal("trackerId", exception.ParamName);
+            Assert.Empty(setup.Entry.Responses);
         }
 
         [Fact]
-        public void Constructor_ShouldNormalizeDateToUtc()
+        public void Responses_ShouldReturnSameCollectionInstance()
         {
-            DateTimeOffset inputDate = CreateDate();
+            var setup = CreateSetup();
 
-            Entry entry = new(Guid.NewGuid(), inputDate);
+            IReadOnlyList<Response> first = setup.Entry.Responses;
+            IReadOnlyList<Response> second = setup.Entry.Responses;
 
-            Assert.Equal(inputDate.ToUniversalTime(), entry.Date);
+            Assert.Same(first, second);
         }
 
         [Fact]
-        public void Constructor_ShouldPreserveDateInstant()
+        public void Responses_ShouldReflectAddedResponses()
         {
-            DateTimeOffset inputDate = CreateDate();
+            var setup = CreateSetup();
 
-            Entry entry = new(Guid.NewGuid(), inputDate);
+            IReadOnlyList<Response> responses = setup.Entry.Responses;
 
-            Assert.Equal(inputDate.UtcDateTime, entry.Date.UtcDateTime);
+            Response response = CreateResponse(
+                setup.Entry,
+                setup.Tracker,
+                setup.Field);
+
+            setup.Entry.AddResponse(response);
+
+            Assert.Single(responses);
+            Assert.Same(response, responses[0]);
         }
 
         [Fact]
-        public void Constructor_ShouldSetDateOffsetToZero()
+        public void Responses_ShouldBeReadOnly()
         {
-            Entry entry = new(Guid.NewGuid(), CreateDate());
+            var setup = CreateSetup();
 
-            Assert.Equal(TimeSpan.Zero, entry.Date.Offset);
+            IReadOnlyList<Response> responses = setup.Entry.Responses;
+
+            Assert.True(responses is IList<Response>);
+
+            IList<Response> mutableView = (IList<Response>)responses;
+
+            Assert.True(mutableView.IsReadOnly);
         }
 
         [Fact]
-        public void Constructor_ShouldPreserveDateTimePrecision()
+        public void Responses_ShouldRejectExternalModification()
         {
-            DateTimeOffset inputDate = CreateDate().AddTicks(1234567);
+            var setup = CreateSetup();
 
-            Entry entry = new(Guid.NewGuid(), inputDate);
+            IReadOnlyList<Response> responses = setup.Entry.Responses;
 
-            Assert.Equal(inputDate.UtcDateTime, entry.Date.UtcDateTime);
+            IList<Response> mutableView = (IList<Response>)responses;
+
+            Response response = CreateResponse(
+                setup.Entry,
+                setup.Tracker,
+                setup.Field);
+
+            Assert.Throws<NotSupportedException>(
+                () => mutableView.Add(response));
         }
 
-        // Date formatting
+        // AddResponse
 
         [Fact]
-        public void Date_ShouldBeRepresentableAsUtcIso8601()
+        public void AddResponse_ShouldAddResponse()
         {
-            Entry entry = new(Guid.NewGuid(), CreateDate());
+            var setup = CreateSetup();
 
-            string formattedDate = entry.Date.UtcDateTime.ToString("O", CultureInfo.InvariantCulture);
+            Response response = CreateResponse(
+                setup.Entry,
+                setup.Tracker,
+                setup.Field);
 
-            Assert.Equal("2026-11-06T18:30:00.0000000Z", formattedDate);
-        }
+            setup.Entry.AddResponse(response);
 
-        [Fact]
-        public void Date_ShouldHaveUtcDateTimeKind()
-        {
-            Entry entry = new(Guid.NewGuid(), CreateDate());
-
-            Assert.Equal(DateTimeKind.Utc, entry.Date.UtcDateTime.Kind);
-        }
-
-        // ChangeDate
-
-        [Fact]
-        public void ChangeDate_ShouldUpdateDate()
-        {
-            Entry entry = new(Guid.NewGuid(), CreateDate());
-            DateTimeOffset newDate = CreateDate().AddDays(1);
-
-            entry.ChangeDate(newDate);
-
-            Assert.Equal(newDate.ToUniversalTime(), entry.Date);
+            Assert.Single(setup.Entry.Responses);
+            Assert.Same(response, setup.Entry.Responses[0]);
         }
 
         [Fact]
-        public void ChangeDate_ShouldNormalizeDateToUtc()
+        public void AddResponse_ShouldRejectNull()
         {
-            Entry entry = new(Guid.NewGuid(), CreateDate());
+            var setup = CreateSetup();
 
-            DateTimeOffset newDate = new(
-                2026, 11, 7,
-                10, 0, 0,
-                TimeSpan.FromHours(2));
-
-            entry.ChangeDate(newDate);
-
-            Assert.Equal(TimeSpan.Zero, entry.Date.Offset);
-            Assert.Equal(newDate.ToUniversalTime(), entry.Date);
+            Assert.Throws<ArgumentNullException>(
+                () => setup.Entry.AddResponse(null!));
         }
 
         [Fact]
-        public void ChangeDate_ShouldPreserveDateInstant()
+        public void AddResponse_ShouldRejectResponseFromAnotherEntry()
         {
-            Entry entry = new(Guid.NewGuid(), CreateDate());
+            var setup = CreateSetup();
 
-            DateTimeOffset newDate = CreateDate().AddHours(4);
+            Entry anotherEntry = new Entry(
+                setup.Tracker.Id,
+                DateTimeOffset.UtcNow);
 
-            entry.ChangeDate(newDate);
+            Response response = CreateResponse(
+                anotherEntry,
+                setup.Tracker,
+                setup.Field);
 
-            Assert.Equal(newDate.UtcDateTime, entry.Date.UtcDateTime);
+            Assert.Throws<ArgumentException>(
+                () => setup.Entry.AddResponse(response));
+
+            Assert.Empty(setup.Entry.Responses);
         }
 
         [Fact]
-        public void ChangeDate_ShouldPreserveId()
+        public void AddResponse_ShouldRejectDuplicateFieldResponse()
         {
-            Entry entry = new(Guid.NewGuid(), CreateDate());
-            Guid originalId = entry.Id;
+            var setup = CreateSetup();
 
-            entry.ChangeDate(CreateDate().AddDays(1));
+            Response first = CreateResponse(
+                setup.Entry,
+                setup.Tracker,
+                setup.Field);
 
-            Assert.Equal(originalId, entry.Id);
+            Response second = CreateResponse(
+                setup.Entry,
+                setup.Tracker,
+                setup.Field);
+
+            setup.Entry.AddResponse(first);
+
+            Assert.Throws<InvalidOperationException>(
+                () => setup.Entry.AddResponse(second));
+
+            Assert.Single(setup.Entry.Responses);
+            Assert.Same(first, setup.Entry.Responses[0]);
         }
 
         [Fact]
-        public void ChangeDate_ShouldPreserveTrackerId()
+        public void AddResponse_ShouldAllowDifferentFields()
         {
-            Guid trackerId = Guid.NewGuid();
-            Entry entry = new(trackerId, CreateDate());
+            var setup = CreateSetup();
 
-            entry.ChangeDate(CreateDate().AddDays(1));
+            FieldDefinition secondField = new FieldDefinition(
+                "Second field",
+                FieldType.Checkbox,
+                1);
 
-            Assert.Equal(trackerId, entry.TrackerId);
+            setup.Tracker.AddField(secondField);
+
+            Response first = CreateResponse(
+                setup.Entry,
+                setup.Tracker,
+                setup.Field);
+
+            Response second = CreateResponse(
+                setup.Entry,
+                setup.Tracker,
+                secondField);
+
+            setup.Entry.AddResponse(first);
+            setup.Entry.AddResponse(second);
+
+            Assert.Equal(2, setup.Entry.Responses.Count);
         }
 
         [Fact]
-        public void ChangeDate_ShouldAllowMultipleChanges()
+        public void AddResponse_ShouldPreserveInsertionOrder()
         {
-            Entry entry = new(Guid.NewGuid(), CreateDate());
+            var setup = CreateSetup();
 
-            DateTimeOffset secondDate = CreateDate().AddDays(1);
-            DateTimeOffset thirdDate = CreateDate().AddDays(2);
+            FieldDefinition secondField = new FieldDefinition(
+                "Second field",
+                FieldType.Checkbox,
+                1);
 
-            entry.ChangeDate(secondDate);
-            entry.ChangeDate(thirdDate);
+            FieldDefinition thirdField = new FieldDefinition(
+                "Third field",
+                FieldType.Duration,
+                2);
 
-            Assert.Equal(thirdDate.ToUniversalTime(), entry.Date);
+            setup.Tracker.AddField(secondField);
+            setup.Tracker.AddField(thirdField);
+
+            Response first = CreateResponse(
+                setup.Entry,
+                setup.Tracker,
+                setup.Field);
+
+            Response second = CreateResponse(
+                setup.Entry,
+                setup.Tracker,
+                secondField);
+
+            Response third = CreateResponse(
+                setup.Entry,
+                setup.Tracker,
+                thirdField);
+
+            setup.Entry.AddResponse(first);
+            setup.Entry.AddResponse(second);
+            setup.Entry.AddResponse(third);
+
+            Assert.Same(first, setup.Entry.Responses[0]);
+            Assert.Same(second, setup.Entry.Responses[1]);
+            Assert.Same(third, setup.Entry.Responses[2]);
         }
 
         [Fact]
-        public void ChangeDate_ShouldAllowSameDate()
+        public void AddResponse_ShouldPreserveExistingResponsesWhenAddingAnother()
         {
-            DateTimeOffset date = CreateDate();
-            Entry entry = new(Guid.NewGuid(), date);
+            var setup = CreateSetup();
 
-            entry.ChangeDate(date);
+            FieldDefinition secondField = new FieldDefinition(
+                "Second field",
+                FieldType.Checkbox,
+                1);
 
-            Assert.Equal(date.ToUniversalTime(), entry.Date);
-        }
+            setup.Tracker.AddField(secondField);
 
-        [Fact]
-        public void ChangeDate_ShouldKeepDateInUtc()
-        {
-            Entry entry = new(Guid.NewGuid(), CreateDate());
+            Response first = CreateResponse(
+                setup.Entry,
+                setup.Tracker,
+                setup.Field);
 
-            entry.ChangeDate(CreateDate().AddDays(1));
+            Response second = CreateResponse(
+                setup.Entry,
+                setup.Tracker,
+                secondField);
 
-            Assert.Equal(TimeSpan.Zero, entry.Date.Offset);
-        }
+            setup.Entry.AddResponse(first);
+            setup.Entry.AddResponse(second);
 
-        [Fact]
-        public void ChangeDate_ShouldUpdateUtcIso8601Representation()
-        {
-            Entry entry = new(Guid.NewGuid(), CreateDate());
-
-            DateTimeOffset newDate = CreateDate().AddDays(1);
-            entry.ChangeDate(newDate);
-
-            string formattedDate = entry.Date.UtcDateTime.ToString("O", CultureInfo.InvariantCulture);
-
-            Assert.EndsWith("Z", formattedDate);
+            Assert.Contains(first, setup.Entry.Responses);
+            Assert.Contains(second, setup.Entry.Responses);
         }
 
         // Independence
 
         [Fact]
-        public void Entries_ShouldHaveIndependentDates()
+        public void AddResponse_ShouldNotModifyAnotherEntry()
         {
-            Guid trackerId = Guid.NewGuid();
+            var setup = CreateSetup();
 
-            Entry first = new(trackerId, CreateDate());
-            Entry second = new(trackerId, CreateDate().AddDays(1));
+            Entry anotherEntry = new Entry(
+                setup.Tracker.Id,
+                DateTimeOffset.UtcNow);
 
-            first.ChangeDate(CreateDate().AddDays(2));
+            Response response = CreateResponse(
+                setup.Entry,
+                setup.Tracker,
+                setup.Field);
 
-            Assert.NotEqual(first.Date, second.Date);
+            setup.Entry.AddResponse(response);
+
+            Assert.Single(setup.Entry.Responses);
+            Assert.Empty(anotherEntry.Responses);
         }
 
         [Fact]
-        public void Entries_ShouldHaveIndependentIds()
+        public void ChangeDate_ShouldPreserveResponses()
         {
-            Guid trackerId = Guid.NewGuid();
-            DateTimeOffset date = CreateDate();
+            var setup = CreateSetup();
 
-            Entry first = new(trackerId, date);
-            Entry second = new(trackerId, date);
+            Response response = CreateResponse(
+                setup.Entry,
+                setup.Tracker,
+                setup.Field);
 
-            Assert.NotEqual(first.Id, second.Id);
-        }
+            setup.Entry.AddResponse(response);
 
-        [Fact]
-        public void ChangeDate_ShouldNotAffectAnotherEntry()
-        {
-            Guid trackerId = Guid.NewGuid();
-            DateTimeOffset originalDate = CreateDate();
+            setup.Entry.ChangeDate(DateTimeOffset.UtcNow.AddDays(1));
 
-            Entry first = new(trackerId, originalDate);
-            Entry second = new(trackerId, originalDate);
-
-            first.ChangeDate(originalDate.AddDays(1));
-
-            Assert.Equal(originalDate.ToUniversalTime(), second.Date);
-        }
-
-        [Fact]
-        public void Entries_ShouldAllowDifferentTrackers()
-        {
-            Guid firstTrackerId = Guid.NewGuid();
-            Guid secondTrackerId = Guid.NewGuid();
-
-            Entry first = new(firstTrackerId, CreateDate());
-            Entry second = new(secondTrackerId, CreateDate());
-
-            Assert.NotEqual(first.TrackerId, second.TrackerId);
-            Assert.NotEqual(first.Id, second.Id);
+            Assert.Single(setup.Entry.Responses);
+            Assert.Same(response, setup.Entry.Responses[0]);
         }
     }
 }
