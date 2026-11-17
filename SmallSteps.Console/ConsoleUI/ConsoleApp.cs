@@ -3,9 +3,19 @@
 
 namespace SmallSteps.Console.ConsoleUI
 {
+    using System;
+
     public class ConsoleApp
     {
+        private readonly TrackerMenu _trackerMenu;
         private bool _isRunning = true;
+
+        public ConsoleApp(TrackerMenu trackerMenu)
+        {
+            ArgumentNullException.ThrowIfNull(trackerMenu);
+
+            _trackerMenu = trackerMenu;
+        }
 
         public void Run()
         {
@@ -13,59 +23,49 @@ namespace SmallSteps.Console.ConsoleUI
             {
                 DisplayMainMenu();
 
-                string? choice = System.Console.ReadLine();
+                string? choice = Console.ReadLine();
 
                 switch (choice)
                 {
                     case "1":
-                        ShowTrackerMenu();
+                        _trackerMenu.Run();
                         break;
 
                     case "0":
-                        _isRunning = false;
-                        break;
-
                     case null:
                         _isRunning = false;
                         break;
 
                     default:
-                        System.Console.WriteLine("Invalid option.");
+                        Console.WriteLine("Invalid option.");
                         Pause();
                         break;
                 }
             }
 
-            System.Console.WriteLine("Goodbye!");
+            Console.WriteLine("Goodbye!");
         }
 
         private static void DisplayMainMenu()
         {
-            System.Console.Clear();
+            Console.Clear();
 
-            System.Console.WriteLine("================================");
-            System.Console.WriteLine("           SMALLSTEPS");
-            System.Console.WriteLine("================================");
-            System.Console.WriteLine();
-            System.Console.WriteLine("1. Manage trackers");
-            System.Console.WriteLine();
-            System.Console.WriteLine("0. Exit");
-            System.Console.WriteLine();
-            System.Console.Write("Choose an option: ");
-        }
-
-        private static void ShowTrackerMenu()
-        {
-            System.Console.WriteLine();
-            System.Console.WriteLine("Tracker management will be implemented next.");
-            Pause();
+            Console.WriteLine("================================");
+            Console.WriteLine("           SMALLSTEPS");
+            Console.WriteLine("================================");
+            Console.WriteLine();
+            Console.WriteLine("1. Manage trackers");
+            Console.WriteLine();
+            Console.WriteLine("0. Exit");
+            Console.WriteLine();
+            Console.Write("Choose an option: ");
         }
 
         private static void Pause()
         {
-            System.Console.WriteLine();
-            System.Console.WriteLine("Press Enter to continue...");
-            System.Console.ReadLine();
+            Console.WriteLine();
+            Console.WriteLine("Press Enter to continue...");
+            Console.ReadLine();
         }
     }
 }

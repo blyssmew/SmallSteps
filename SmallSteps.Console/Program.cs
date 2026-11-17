@@ -3,13 +3,25 @@
 
 namespace SmallSteps.Console
 {
+    using SmallSteps.Application.Trackers;
     using SmallSteps.Console.ConsoleUI;
+    using SmallSteps.Console.Storage;
 
     internal class Program
     {
         private static void Main(string[] args)
         {
-            ConsoleApp app = new();
+            // Repositories
+            InMemoryTrackerRepository trackerRepository = new();
+
+            // UseCases
+            CreateTrackerUseCase createTrackerUseCase = new(trackerRepository);
+            GetAllTrackersUseCase getAllTrackersUseCase = new(trackerRepository);
+
+            // Console UI
+            TrackerMenu trackerMenu = new(createTrackerUseCase, getAllTrackersUseCase);
+
+            ConsoleApp app = new(trackerMenu);
             app.Run();
         }
     }
