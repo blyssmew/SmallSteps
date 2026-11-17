@@ -11,5 +11,7 @@ namespace SmallSteps.Application.Abstractions
         void Add(Tracker tracker);
 
         Tracker? GetById(Guid id);
+
+        IReadOnlyList<Tracker> GetAll();
     }
 }

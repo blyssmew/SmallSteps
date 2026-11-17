@@ -4,6 +4,7 @@
 namespace SmallSteps.Tests.ApplicationTest.TestDoubles
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using SmallSteps.Application.Abstractions;
     using SmallSteps.Domain.Trackers;
@@ -27,6 +28,11 @@ namespace SmallSteps.Tests.ApplicationTest.TestDoubles
         public Tracker? GetById(Guid id)
         {
             return _trackers.TryGetValue(id, out Tracker? tracker) ? tracker : null;
+        }
+
+        public IReadOnlyList<Tracker> GetAll()
+        {
+            return _trackers.Values.ToList();
         }
     }
 }
